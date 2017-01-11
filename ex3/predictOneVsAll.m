@@ -13,9 +13,21 @@ num_labels = size(all_theta, 1);
 
 % You need to return the following variables correctly 
 p = zeros(size(X, 1), 1);
+p1 = zeros(size(X, 1), 1);
 
 % Add ones to the X data matrix
 X = [ones(m, 1) X];
+
+for i=1:m
+    curX = X(i, :);   
+    curHypo = curX * all_theta';
+    curProb = sigmoid(curHypo);
+    p(i) = find(curProb == (max(curProb)));
+end;
+
+% val = X * all_theta';
+% sigmValue = sigmoid(val);
+% [value p] = max (sigmValue, [], 2);
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using
